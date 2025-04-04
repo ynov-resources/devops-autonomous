@@ -12,6 +12,6 @@ jobs:
         - name: Deploy to Kubernetes
           run: |
             echo ${{ secrets.KUBE_CONFIG }} > ~/.kube/config
-            https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-            helm3 install myapp-helm ./myapp-helm \
+            curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+            helm3 upgrade --install myapp-helm ./myapp-helm \
             --kubeconfig ~/.kube/config 
