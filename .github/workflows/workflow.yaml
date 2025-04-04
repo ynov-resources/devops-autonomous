@@ -25,7 +25,7 @@ jobs:
           flake8 src/app.py
       - name: Run bandit
         run: |
-          bandit --check src/ --severity-level high --recursive
+          bandit src/ --severity-level high --recursive
   build:
     needs: checkcode
     runs-on: ubuntu-latest
