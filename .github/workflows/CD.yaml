@@ -1,0 +1,17 @@
+name: Deploy to Kubernetes
+on:
+  workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+    
+        - name: Deploy to Kubernetes
+          run: |
+            echo ${{ secrets.KUBE_CONFIG }} > ~/.kube/config
+            https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+            helm3 install myapp-helm ./myapp-helm \
+            --kubeconfig ~/.kube/config 
